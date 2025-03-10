@@ -5,11 +5,11 @@ FROM python:3.13.2
 WORKDIR /app
 
 # Kopioidaan riippuvuudet ja asennetaan ne
-COPY app/requirements.txt requirements.txt
+COPY ../app/requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Kopioidaan sovelluksen lähdekoodi
-COPY app /app
+COPY ../app /app
 
 # Asetetaan käynnistyskomento
-CMD ["python", "/app/main.py"]
+CMD ["python", "main.py"]

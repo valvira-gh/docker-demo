@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vitsigeneraattori</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>Vitsigeneraattori</h1>
+            <p id="setup"></p>
+            <p id="punchline"></p>
+            <button onclick="fetchJoke()">Hae vitsi</button>
+        </div>
+
+        <script>
+            function fetchJoke() {
+                fetch('/get-joke')
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById('setup').innerText = data.setup;
+                        document.getElementById('punchline').innerText = data.punchline;
+                    })
+                    .catch(err => console.error('Virhe', err))
+            }
+        </script>
+    </body>
+</html>
