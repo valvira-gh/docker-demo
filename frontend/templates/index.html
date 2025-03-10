@@ -11,8 +11,9 @@
         <div class="container">
             <h1>Vitsigeneraattori</h1>
             <p id="setup"></p>
-            <p id="punchline"></p>
+            <p id="punchline" style="display: none;"></p>  <!-- Punchline piilotettu -->
             <button onclick="fetchJoke()">Hae vitsi</button>
+            <button id="reveal-btn" onclick="revealPunchline()" style="display: none;">Näytä punchline</button>
         </div>
 
         <script>
@@ -22,8 +23,15 @@
                     .then(data => {
                         document.getElementById('setup').innerText = data.setup;
                         document.getElementById('punchline').innerText = data.punchline;
+                        document.getElementById('punchline').style.display = "none" // Varmistetaan että punchline piilossa
+                        document.getElementById('reveal-btn').style.display = "block" // Näytetään nappi
                     })
                     .catch(err => console.error('Virhe', err))
+            }
+
+            function revealPunchline() {
+                document.getElementById('punchline').style.display = "block" // Näytetään punchline
+                document.getElementById('reveal-btn').style.display = "none" // Piilotetaan nappi
             }
         </script>
     </body>
